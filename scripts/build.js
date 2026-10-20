@@ -34,7 +34,7 @@ body = body.replace(/<([a-zA-Z][\w-]*)([^<>]*?)\s*\/>/g, (m, tag, attrs) =>
     VOID.has(tag.toLowerCase()) ? m : `<${tag}${attrs}></${tag}>`);
 
 const title = 'Syamili K | Odoo / Python Developer';
-const description = 'Portfolio and resume of Syamili K, an Odoo / Python developer with 3.5+ years of experience building ERP modules, integrations and reports.';
+const description = 'Portfolio and resume of Syamili K, an Odoo / Python developer with 4+ years of experience building ERP modules, integrations and reports.';
 const favicon = 'data:image/svg+xml,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0b1b3a"/>' +
     '<text x="32" y="42" font-family="Arial" font-weight="800" font-size="28" text-anchor="middle" fill="#38bdf8">SK</text></svg>');
