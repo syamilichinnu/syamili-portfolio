@@ -62,8 +62,7 @@ for tile in find_all(sections['education'], 'sk-edu'):
     edus.append(dict(date=txt(first(tile, 'sk-date')), degree=txt(next(tile.iter('h3'))),
                      uni=txt(next(tile.iter('h4'))), college=txt(next(tile.iter('p')))))
 
-facts = first(sections['about'], 'sk-facts')
-location = txt(first(facts, 'sk-loc'))
+location = [txt(e) for e in root.iter('span') if 'India' in txt(e) and 's' in cls(e)][0].strip("'")
 email_link = [a.get('href') for a in root.iter('a') if (a.get('href') or '').startswith('mailto:')][0]
 links = {a.get('href') for a in root.iter('a')}
 linkedin = [l for l in links if l and 'linkedin.com' in l][0]
