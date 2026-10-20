@@ -63,9 +63,8 @@ for tile in find_all(sections['education'], 'sk-edu'):
                      uni=txt(next(tile.iter('h4'))), college=txt(next(tile.iter('p')))))
 
 facts = first(sections['about'], 'sk-facts')
-email = txt(first(facts, 'sk-copy'))
-phone = [txt(s) for s in facts.iter('span') if txt(s).startswith('+')][0]
-location = [txt(s) for s in facts.iter('span') if 'India' in txt(s)][0]
+location = txt(first(facts, 'sk-loc'))
+email_link = [a.get('href') for a in root.iter('a') if (a.get('href') or '').startswith('mailto:')][0]
 links = {a.get('href') for a in root.iter('a')}
 linkedin = [l for l in links if l and 'linkedin.com' in l][0]
 github = [l for l in links if l and 'github.com' in l][0]
@@ -134,9 +133,7 @@ def link(url, text):
     return '<u><a href="%s" color="black">%s</a></u>' % (escape(url), escape(text))
 
 story = [Paragraph('SYAMILI K', st['name']), Paragraph(escape(role) + ' &nbsp;|&nbsp; ' + escape(location), st['role']),
-         Paragraph(' | '.join([escape(phone), link('mailto:' + email, email),
-                               link(linkedin, 'LinkedIn'),
-                               link(github, 'GitHub')]), st['contact']),
+         Paragraph(' | '.join([link(email_link, 'Email'), link(linkedin, 'LinkedIn'), link(github, 'GitHub')]), st['contact']),
          Spacer(1, 6)]
 
 story += [Section('Summary')] + [Paragraph(escape(t), st['p']) for t in about_ps] + [Spacer(1, 4)]
